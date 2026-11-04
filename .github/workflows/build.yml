@@ -1,0 +1,15 @@
+name: build-exe
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Build
+        shell: cmd
+        run: build_msvc.bat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Romchik-exe
+          path: Romchik.exe
